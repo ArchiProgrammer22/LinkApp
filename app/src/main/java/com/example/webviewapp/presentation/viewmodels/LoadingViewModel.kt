@@ -3,11 +3,12 @@ package com.example.webviewapp.presentation.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
+import androidx.lifecycle.viewModelScope
 import com.example.webviewapp.domain.Link
 import com.example.webviewapp.presentation.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -16,9 +17,14 @@ class LoadingViewModel @Inject constructor(
 ) : ViewModel() {
 
     fun getLink(): LiveData<Link> {
-        return liveData(Dispatchers.IO) {
-            val data = repository.getLink()
-            emit(data)
-        }
+        return liveData(Dispatchers.IO) { emit(repository.getLink()) }
+    }
+
+    fun getLocalLink(): LiveData<Link> {
+        return liveData(Dispatchers.IO) { emit(repository.getLocalLink()) }
+    }
+
+    fun insertLocalLink(link: Link) {
+        viewModelScope.launch(Dispatchers.IO) { repository.insertLocalLink(link) }
     }
 }

@@ -5,5 +5,7 @@ class UtilConstants {
         const val BASE_URL = "https://efs5i1ube5.execute-api.eu-central-1.amazonaws.com/"
         const val PAGE = "page"
         const val DEFAULT = "https://www.google.com.ua/"
+        const val FIRST = "firstStart"
+        const val DB_NAME = "linksDb"
     }
 }
