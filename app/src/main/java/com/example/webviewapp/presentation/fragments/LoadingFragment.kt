@@ -1,6 +1,7 @@
 package com.example.webviewapp.presentation.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,11 +9,14 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.webviewapp.App
 import com.example.webviewapp.R
 import com.example.webviewapp.UtilConstants
 import com.example.webviewapp.databinding.FragmentLoadingBinding
 import com.example.webviewapp.presentation.viewmodels.LoadingViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoadingFragment : Fragment() {
 
     private val viewModel: LoadingViewModel by viewModels()
@@ -28,9 +32,11 @@ class LoadingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        findNavController().navigate(
-            R.id.action_loadingFragment_to_webViewFragment,
-            bundleOf(UtilConstants.PAGE to viewModel.getLink().value?.home)
-        )
+        viewModel.getLink().observe(viewLifecycleOwner) {
+            findNavController().navigate(
+                R.id.action_loadingFragment_to_webViewFragment,
+                bundleOf(UtilConstants.PAGE to it.home)
+            )
+        }
     }
 }

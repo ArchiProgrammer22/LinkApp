@@ -6,6 +6,6 @@ import androidx.room.PrimaryKey
 @Entity
 data class Link(
     @PrimaryKey
-    val link: String,
     val home: String,
+    val link: String,
 )

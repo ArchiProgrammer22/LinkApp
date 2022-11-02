@@ -7,8 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.webviewapp.UtilConstants
 import com.example.webviewapp.databinding.FragmentWebViewBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class WebViewFragment : Fragment() {
 
     private lateinit var binding: FragmentWebViewBinding
