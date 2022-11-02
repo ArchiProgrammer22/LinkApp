@@ -1,5 +1,7 @@
 Link App
 
+
+
 Technologies used: View Binding, DI Hilt, Coroutines, Retrofit, Navigation, Room.
 The application uses Clean Architecture and the MVVM architectural pattern.
 
@@ -32,6 +34,8 @@ Display is possible thanks to WebView. There is navigation inside WebView. If th
 
 ![image](https://user-images.githubusercontent.com/70170204/199566929-52a2d1ab-c462-49eb-98f9-8aa907f025f4.png)
 
+
+
 Supports screen flip with data saving.
 
 ![image](https://user-images.githubusercontent.com/70170204/199567149-9db573ca-d504-4f85-9f8b-ac015ad253da.png)
@@ -43,3 +47,6 @@ Save the parameters sent by the server and use them on subsequent launches.+
 Run the application in full-screen mode, hiding the system ui.+
 Add screen flip support (portrait and landscape modes) without restarting the webview and saving the state.+
 Set any app icon.+
+
+
+https://user-images.githubusercontent.com/70170204/199567885-89070895-62f5-4276-aae4-2c91eac492cf.mp4
