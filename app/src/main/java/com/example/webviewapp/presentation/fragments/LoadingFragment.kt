@@ -16,7 +16,6 @@ import com.example.webviewapp.databinding.FragmentLoadingBinding
 import com.example.webviewapp.presentation.viewmodels.LoadingViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class LoadingFragment : Fragment() {
 

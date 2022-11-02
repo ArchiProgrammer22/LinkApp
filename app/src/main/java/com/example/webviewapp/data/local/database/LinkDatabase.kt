@@ -7,5 +7,5 @@ import com.example.webviewapp.domain.Link
 
 @Database(entities = [Link::class], version = 1)
 abstract class LinkDatabase : RoomDatabase() {
-    abstract fun linkDao() : LinkDao
+    abstract fun linkDao(): LinkDao
 }

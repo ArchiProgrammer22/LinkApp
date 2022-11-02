@@ -1,7 +1,6 @@
 package com.example.webviewapp.presentation
 
 import android.os.Bundle
-import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.example.webviewapp.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint

@@ -9,7 +9,7 @@ import com.example.webviewapp.domain.Link
 @Dao
 interface LinkDao {
     @Query("SELECT * FROM link")
-    fun getLocalLink() : Link
+    fun getLocalLink(): Link
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(link: Link)
