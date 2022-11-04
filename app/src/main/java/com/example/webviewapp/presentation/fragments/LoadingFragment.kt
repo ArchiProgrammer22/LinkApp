@@ -1,7 +1,5 @@
 package com.example.webviewapp.presentation.fragments
 
-import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,13 +20,6 @@ class LoadingFragment : Fragment() {
     private val viewModel: LoadingViewModel by viewModels()
     private lateinit var binding: FragmentLoadingBinding
 
-    private val sharedPreferences: SharedPreferences by lazy {
-        requireActivity().getPreferences(Context.MODE_PRIVATE)
-    }
-    private val sharedEditor: SharedPreferences.Editor by lazy {
-        sharedPreferences.edit()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,7 +30,7 @@ class LoadingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (isItFirstTime()) {
+        if (viewModel.isItFirstTime()) {
             viewModel.getLink().observe(viewLifecycleOwner) {
                 viewModel.insertLocalLink(it)
                 navigate(it.link)
@@ -49,16 +40,6 @@ class LoadingFragment : Fragment() {
                 navigate(it.home)
             }
         }
-    }
-
-    private fun isItFirstTime(): Boolean {
-        if (sharedPreferences.getBoolean(UtilConstants.FIRST, true)) {
-            sharedEditor.putBoolean(UtilConstants.FIRST, false)
-            sharedEditor.commit()
-            sharedEditor.apply()
-            return true
-        }
-        return false
     }
 
     private fun navigate(url: String) {

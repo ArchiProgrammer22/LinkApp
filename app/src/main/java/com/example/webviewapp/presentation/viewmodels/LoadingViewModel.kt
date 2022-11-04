@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
+import com.example.webviewapp.UtilConstants
 import com.example.webviewapp.domain.Link
 import com.example.webviewapp.presentation.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -26,5 +27,15 @@ class LoadingViewModel @Inject constructor(
 
     fun insertLocalLink(link: Link) {
         viewModelScope.launch(Dispatchers.IO) { repository.insertLocalLink(link) }
+    }
+
+    fun isItFirstTime(): Boolean {
+        val edit = repository.getLocalData().edit()
+        if (repository.getLocalData().getBoolean(UtilConstants.FIRST, true)) {
+            edit.putBoolean(UtilConstants.FIRST, false)
+            edit.apply()
+            return true
+        }
+        return false
     }
 }

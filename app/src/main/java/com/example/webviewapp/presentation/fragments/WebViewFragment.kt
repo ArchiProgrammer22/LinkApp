@@ -4,18 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebView
-import android.webkit.WebViewClient
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.example.webviewapp.UtilConstants
 import com.example.webviewapp.databinding.FragmentWebViewBinding
+import com.example.webviewapp.presentation.viewmodels.WebViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class WebViewFragment : Fragment() {
 
     private lateinit var binding: FragmentWebViewBinding
+    private val viewModel: WebViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,29 +28,11 @@ class WebViewFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initWebView(savedInstanceState)
-        backCheck()
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        binding.webView.saveState(outState)
-        super.onSaveInstanceState(outState)
-    }
-
-    private fun initWebView(bundle: Bundle?) {
-        if (bundle == null) {
-            binding.webView.run {
-                settings.javaScriptEnabled = true
-                webViewClient = object : WebViewClient() {
-                    override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
-                        return false
-                    }
-                }
-                loadUrl(arguments?.getString(UtilConstants.PAGE) ?: UtilConstants.DEFAULT)
-            }
-        } else {
-            binding.webView.restoreState(bundle)
+        viewModel.setUrl(arguments?.getString(UtilConstants.PAGE) ?: UtilConstants.DEFAULT)
+        viewModel.getWebView().observe(viewLifecycleOwner) {
+            binding.webView.addView(it)
         }
+        backCheck()
     }
 
     private fun backCheck() {
@@ -57,9 +40,7 @@ class WebViewFragment : Fragment() {
             viewLifecycleOwner,
             object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
-                    if (binding.webView.canGoBack()) {
-                        binding.webView.goBack()
-                    } else {
+                    if(!viewModel.hasHistory()) {
                         requireActivity().finish()
                     }
                 }
