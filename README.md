@@ -36,7 +36,7 @@ Display is possible thanks to WebView. There is navigation inside WebView. If th
 
 Supports screen flip with data saving. It's possible because I use view model and extend LiveData with WebView generic and override some methods.
 
-![image](https://user-images.githubusercontent.com/70170204/199567149-9db573ca-d504-4f85-9f8b-ac015ad253da.png)
+![image](https://user-images.githubusercontent.com/70170204/199932347-a4c134f5-894c-4cbf-9f38-60366e04c35d.png)
 
 Additional Tasks:
 
