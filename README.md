@@ -28,15 +28,13 @@ When the user first opens the application, the data is placed in local storage. 
 
 When the data is delivered to the loading fragment, the second screen is immediately launched, in which the bundle with the link is passed. If this is the first launch of the application, then a link to Google is transmitted to the second screen, if not the first, then a link to YouTube.
 
-![image](https://user-images.githubusercontent.com/70170204/199566770-302b962d-5ebc-42a9-aa69-6b4ca78db791.png)
+![image](https://user-images.githubusercontent.com/70170204/199931407-a9bbe7a6-b02f-481c-a21c-bb3549e2b25a.png)
 
 Display is possible thanks to WebView. There is navigation inside WebView. If there are no more pages in the WebView stack, then the next time you click the back button, the application is destroyed.
 
-![image](https://user-images.githubusercontent.com/70170204/199566929-52a2d1ab-c462-49eb-98f9-8aa907f025f4.png)
+![image](https://user-images.githubusercontent.com/70170204/199931594-aef196fd-2ea7-41d4-b1a3-5481b02fd140.png)
 
-
-
-Supports screen flip with data saving.
+Supports screen flip with data saving. It's possible because I use view model and extend LiveData with WebView generic and override some methods.
 
 ![image](https://user-images.githubusercontent.com/70170204/199567149-9db573ca-d504-4f85-9f8b-ac015ad253da.png)
 
