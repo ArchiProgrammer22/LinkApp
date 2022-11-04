@@ -43,10 +43,17 @@ Supports screen flip with data saving.
 Additional Tasks:
 
 Add the ability to go back in the webview when the back button is clicked.+
+
 Save the parameters sent by the server and use them on subsequent launches.+
+
 Run the application in full-screen mode, hiding the system ui.+
+
 Add screen flip support (portrait and landscape modes) without restarting the webview and saving the state.+
+
 Set any app icon.+
 
 
-https://user-images.githubusercontent.com/70170204/199567885-89070895-62f5-4276-aae4-2c91eac492cf.mp4
+https://user-images.githubusercontent.com/70170204/199925675-738fabbb-fb92-4beb-9046-342317533567.mp4
+
+
+
